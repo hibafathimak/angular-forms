@@ -1,0 +1,154 @@
+<section class="intro d-flex align-items-center">
+  <div class="container">
+    <h1 class="text-center mb-4">employee-list</h1>
+
+    <button class="btn btn-dark rounded-0 float-end" data-bs-toggle="modal" data-bs-target="#exampleModal"
+      type="button">Add Employee</button>
+    <div class="row justify-content-center">
+      <div class="col-12">
+        <div class="table-responsive bg-white">
+          <table class="table mb-0">
+            <thead>
+              <tr>
+                <th scope="col">EMPLOYEES</th>
+                <th scope="col">POSITION</th>
+                <th scope="col">CONTACTS</th>
+                <th scope="col">AGE</th>
+                <th scope="col">ADDRESS</th>
+                <th scope="col">SALARY</th>
+              </tr>
+            </thead>
+            <tbody>
+              @for(item of employeeList; track $index){
+                <tr>
+                  <th scope="row" style="color: #666666;">{{item.name}}</th>
+                  <td>{{item.position}}</td>
+                  <td>{{item.contact}}</td>
+                  <td>{{item.age}}</td>
+                  <td>{{item.address}}</td>
+                  <td>{{item.salary}}</td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Enter Details</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="employeeForm" (ngSubmit)="submit()">
+          <div class="form-floating">
+            <input
+              formControlName="name"
+              type="text"
+              class="form-control mb-3"
+              id="floatingInput"
+              placeholder="name"
+            />
+            <label for="floatingInput">Employee Name</label>
+            <div *ngIf="employeeForm.get('name')?.invalid && employeeForm.get('name')?.touched" class="text-danger">
+              Invalid Input
+            </div>
+          </div>
+        
+          <div class="form-floating">
+            <input
+              formControlName="position"
+              type="text"
+              class="form-control mb-3"
+              id="position"
+              placeholder="position"
+            />
+            <label for="position">Position</label>
+            <div *ngIf="employeeForm.get('position')?.invalid && employeeForm.get('position')?.touched" class="text-danger">
+              Invalid Input
+            </div>
+          </div>
+        
+          <div class="form-floating">
+            <input
+              formControlName="contact"
+              type="email"
+              class="form-control mb-3"
+              id="contact"
+              placeholder="contact"
+            />
+            <label for="contact">Contact</label>
+            <div *ngIf="employeeForm.get('contact')?.invalid && employeeForm.get('contact')?.touched" class="text-danger">
+              Invalid Input
+            </div>
+          </div>
+        
+          <div class="form-floating">
+            <input
+              formControlName="age"
+              type="number"
+              class="form-control mb-3"
+              id="age"
+              placeholder="age"
+            />
+            <label for="age">Age</label>
+            <div *ngIf="employeeForm.get('age')?.invalid && employeeForm.get('age')?.touched" class="text-danger">
+              Invalid Input
+            </div>
+          </div>
+        
+          <div class="form-floating">
+            <input
+              formControlName="address"
+              type="text"
+              class="form-control mb-3"
+              id="address"
+              placeholder="address"
+            />
+            <label for="address">Address</label>
+            <div *ngIf="employeeForm.get('address')?.invalid && employeeForm.get('address')?.touched" class="text-danger">
+              Invalid Input
+            </div>
+          </div>
+        
+          <div class="form-floating">
+            <input
+              formControlName="salary"
+              type="text"
+              class="form-control mb-3"
+              id="salary"
+              placeholder="salary"
+            />
+            <label for="salary">Salary</label>
+            <div *ngIf="employeeForm.get('salary')?.invalid && employeeForm.get('salary')?.touched" class="text-danger">
+              Invalid Input
+            </div>
+          </div>
+        
+        </form>
+        
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="submit" class="btn btn-primary" [disabled]="employeeForm.invalid">Save changes</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const myModal = document.getElementById('myModal');
+  const myInput = document.getElementById('myInput');
+
+  myModal.addEventListener('shown.bs.modal', () => {
+    myInput.focus();
+  });
+</script>

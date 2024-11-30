@@ -1,0 +1,23 @@
+<div style="height: 100vh;" class="d-flex  align-items-center">
+    <div style="width: 25%;" class=" h-50 container my-5 p-5 d-flex flex-column justify-content-center  rounded shadow">
+        <form [formGroup]="loginForm" class="my-5" (ngsubmit)="login()">
+            <h1 class="h3 mb-3 fw-normal">Login</h1>
+    
+            <div class="form-floating">
+                <input name="username" formControlName="username" type="text" class="form-control mb-3" id="floatingInput"
+                    placeholder="username">
+                <label for="floatingInput">Username</label>
+            </div>
+            @if(loginForm.get('username')?.errors && loginForm.get('username')?.touched){ <div class=" text-dark">Invalid
+                Email</div>}
+            <div class="form-floating">
+                <input name="password" formControlName="password" type="password" class="form-control mb-3"
+                    id="floatingPassword" placeholder="Password">
+                <label for="floatingPassword">Password</label>
+            </div>
+            @if(loginForm.get('password')?.errors && loginForm.get('password')?.touched){ <div class=" text-dark">Invalid
+                password</div>}
+            <button [disabled]="loginForm.invalid" routerLink="employee" class="btn btn-primary w-20 py-2" type="submit">Sign in</button>
+        </form>
+    </div>
+</div>
